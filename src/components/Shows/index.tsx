@@ -1,8 +1,6 @@
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../../store";
-import { ShowInfoModel, ShowsModel } from "../../types/show.model";
+import { ShowInfoModel } from "../../types/show.model";
 import Card from "../Card/Card";
 
 interface ShowsProps {
@@ -16,7 +14,7 @@ const Shows: FC<ShowsProps> = ({ data }) => {
     <ShowsWrapper>
       <h1>Shows Page</h1>
       <ShowsWrapper>
-        {data?.map((item, idx) => (
+        {data.map((item, idx) => (
           <Card
             key={item.show.id}
             name={item.show.name}

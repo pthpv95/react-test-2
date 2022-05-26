@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Shows from "../../components/Shows";
 import { getShows } from "../../slices/showsSlice";
@@ -9,8 +9,10 @@ const ShowsPage = () => {
   const { data } = useSelector((state: RootState) => state.shows);
   
   useEffect(() => {
-    dispatch(getShows());
-  }, [dispatch]);
+    if(!data.length){
+      dispatch(getShows());
+    }
+  }, [dispatch, data]);
 
   return <Shows data={data} />;
 };

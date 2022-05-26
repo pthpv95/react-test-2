@@ -9,10 +9,10 @@ const App: React.FC = () => {
   return (
     <Suspense fallback={<div>Loading....</div>}>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="*" element={<div>NOT FOUND</div>} />
+        <Route path="/shows" element={<MainLayout />}>
           <Route index element={<ShowsPage />} />
-          <Route path="/:showId" element={<ShowDetailPage />} />
-          <Route path="*" element={<div>Unhandle page</div>} />
+          <Route path="/shows/:showId/episode" element={<ShowDetailPage />} />
         </Route>
       </Routes>
     </Suspense>

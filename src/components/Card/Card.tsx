@@ -1,53 +1,49 @@
-import React, { FC, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { EspisodeModel } from "../../types/espisode.model";
-import type { CardProps } from "./Card.model";
+import React, { FC, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import { EspisodeModel } from '../../types/espisode.model'
+import type { CardProps } from './Card.model'
 
 const Card: FC<CardProps> = ({ name, summary, image, espisode: episode }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const sanitizeSummary = useMemo(() => {
-    let res;
-    res = summary?.replace(/(<([^>]+)>)/gi, "");
-    return res;
-  }, [summary]);
-
-  const showEspisode: boolean = useMemo(
-    () => (episode && episode.length !== 0 ? true : false),
-    [episode]
-  );
+    let res
+    res = summary?.replace(/(<([^>]+)>)/gi, '')
+    return res
+  }, [summary])
 
   const handleNavigate = (esp: EspisodeModel) => {
-    navigate(`${esp.id}`, { state: esp });
-  };
+    navigate(`/shows/${esp.id}/episode`, { state: esp })
+  }
 
   return (
-    <CardWrapper bg={image?.medium ?? "none"}>
+    <CardWrapper bg={image?.medium ?? 'none'}>
       <ImageWrapper>
         {image && <img src={image.original} alt={name} />}
       </ImageWrapper>
       <InfoWrapper>
         <ShowName>{name}</ShowName>
         <q>
-          <em>{sanitizeSummary || "No content"}</em>
+          <em>{sanitizeSummary || 'No content'}</em>
         </q>
-        {showEspisode && <h3>Espisode</h3>}
+        {episode?.length && <h3>Espisode</h3>}
         <EspisodeWrapper>
-          {showEspisode &&
-            episode?.map((esp) => (
-              <li key={esp.id} onClick={() => handleNavigate(esp)}>{esp.name}</li>
-            ))}
+          {episode?.map((esp) => (
+            <li key={esp.id} onClick={() => handleNavigate(esp)}>
+              {esp.name}
+            </li>
+          ))}
         </EspisodeWrapper>
       </InfoWrapper>
     </CardWrapper>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
 
 const CardWrapper = styled.div<{ bg: string }>`
   background: ${(props) =>
-    props.bg === "none" ? "rgba(0,0,0,0.5)" : `url(${props.bg})`};
+    props.bg === 'none' ? 'rgba(0,0,0,0.5)' : `url(${props.bg})`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,7 +54,7 @@ const CardWrapper = styled.div<{ bg: string }>`
     flex-flow: row nowrap;
   }
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
-`;
+`
 
 const ImageWrapper = styled.div`
   width: 100%;
@@ -75,15 +71,15 @@ const ImageWrapper = styled.div`
     height: 100%;
     object-fit: fill;
   }
-`;
+`
 
 const InfoWrapper = styled.div`
   padding: 1rem 1rem 1rem 3rem;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-`;
+`
 
-const ShowName = styled.h1``;
+const ShowName = styled.h1``
 
 const EspisodeWrapper = styled.ul`
   max-height: 300px;
@@ -100,4 +96,4 @@ const EspisodeWrapper = styled.ul`
       font-weight: bold;
     }
   }
-`;
+`

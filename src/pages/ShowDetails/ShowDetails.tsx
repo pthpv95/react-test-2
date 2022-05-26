@@ -8,7 +8,7 @@ const Espisode: FC = () => {
 
   return (
     <div>
-      <h1>Espisode Detail</h1>
+      <h1>Episode Detail</h1>
       <Card
         name={espisode?.name}
         summary={espisode?.summary || ""}
