@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { EpisodeModel } from '../../types/episode.model'
 import type { CardProps } from './Card.model'
 
-const Card: FC<CardProps> = ({ name, summary, image, episode: episode }) => {
+const Card: FC<CardProps> = ({ name, summary, image, episode }) => {
   const navigate = useNavigate()
   const sanitizeSummary = useMemo(() => {
     let res
@@ -13,7 +13,7 @@ const Card: FC<CardProps> = ({ name, summary, image, episode: episode }) => {
   }, [summary])
 
   const handleNavigate = (esp: EpisodeModel) => {
-    navigate(`/shows/${esp.id}/episode`, { state: esp })
+    navigate(`/episodes/${esp.id}`, { state: esp })
   }
 
   return (

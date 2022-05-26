@@ -12,8 +12,8 @@ const App: React.FC = () => {
         <Route path="*" element={<div>NOT FOUND</div>} />
         <Route path="/shows" element={<MainLayout />}>
           <Route index element={<ShowsPage />} />
-          <Route path="/shows/:showId/episode" element={<ShowDetailPage />} />
         </Route>
+        <Route path="/episodes/:id" element={<ShowDetailPage />} />
       </Routes>
     </Suspense>
   );
