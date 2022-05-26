@@ -1,4 +1,4 @@
-import { EspisodeModel } from "../../types/espisode.model";
+import { EpisodeModel } from "../../types/episode.model";
 
 export interface CardProps {
   name: string;
@@ -7,5 +7,5 @@ export interface CardProps {
     original?: string;
     medium?: string;
   };
-  espisode?: EspisodeModel[];
+  episode?: EpisodeModel[];
 }

@@ -1,10 +1,10 @@
 import React, { FC, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { EspisodeModel } from '../../types/espisode.model'
+import { EpisodeModel } from '../../types/episode.model'
 import type { CardProps } from './Card.model'
 
-const Card: FC<CardProps> = ({ name, summary, image, espisode: episode }) => {
+const Card: FC<CardProps> = ({ name, summary, image, episode: episode }) => {
   const navigate = useNavigate()
   const sanitizeSummary = useMemo(() => {
     let res
@@ -12,7 +12,7 @@ const Card: FC<CardProps> = ({ name, summary, image, espisode: episode }) => {
     return res
   }, [summary])
 
-  const handleNavigate = (esp: EspisodeModel) => {
+  const handleNavigate = (esp: EpisodeModel) => {
     navigate(`/shows/${esp.id}/episode`, { state: esp })
   }
 
@@ -26,14 +26,14 @@ const Card: FC<CardProps> = ({ name, summary, image, espisode: episode }) => {
         <q>
           <em>{sanitizeSummary || 'No content'}</em>
         </q>
-        {episode?.length && <h3>Espisode</h3>}
-        <EspisodeWrapper>
+        {episode?.length && <h3>Episode</h3>}
+        <EpisodeWrapper>
           {episode?.map((esp) => (
             <li key={esp.id} onClick={() => handleNavigate(esp)}>
               {esp.name}
             </li>
           ))}
-        </EspisodeWrapper>
+        </EpisodeWrapper>
       </InfoWrapper>
     </CardWrapper>
   )
@@ -81,7 +81,7 @@ const InfoWrapper = styled.div`
 
 const ShowName = styled.h1``
 
-const EspisodeWrapper = styled.ul`
+const EpisodeWrapper = styled.ul`
   max-height: 300px;
   overflow-y: auto;
 

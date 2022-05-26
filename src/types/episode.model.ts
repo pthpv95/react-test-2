@@ -1,4 +1,4 @@
-export interface EspisodeModel {
+export interface EpisodeModel {
   airdate: Date;
   airstamp: Date;
   airtime: string;

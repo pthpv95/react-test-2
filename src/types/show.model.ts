@@ -1,4 +1,4 @@
-import { EspisodeModel } from "./espisode.model";
+import { EpisodeModel } from "./episode.model";
 
 export interface ShowsModel {
   score: number;
@@ -30,5 +30,5 @@ export interface ShowsModel {
 }
 
 export interface ShowInfoModel extends ShowsModel {
-  espisodes: EspisodeModel[];
+  episodes: EpisodeModel[];
 }

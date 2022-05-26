@@ -20,7 +20,7 @@ const Shows: FC<ShowsProps> = ({ data }) => {
             name={item.show.name}
             summary={item.show.summary}
             image={item.show.image}
-            espisode={item.espisodes}
+            episode={item.episodes}
           />
         ))}
       </ShowsWrapper>

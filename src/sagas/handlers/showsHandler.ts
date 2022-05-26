@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery, call, put, all } from "redux-saga/effects";
 import { putShows } from "../../slices/showsSlice";
-import { fetchShowEspisode, fetchShows } from "../requests/shows";
+import { fetchShowEpisode, fetchShows } from "../requests/shows";
 import type { ShowsModel } from "../../types/show.model";
 
 export function* getShowHanlders(action: any): any {
@@ -8,13 +8,13 @@ export function* getShowHanlders(action: any): any {
     const res = yield call(fetchShows);
     const { data } = res;
     const showIds: number[] = data.map((show: ShowsModel) => show.show.id);
-    const espisodes = showIds.map((id) =>
-      fetchShowEspisode(id).then((res) => res.data)
+    const episodes = showIds.map((id) =>
+      fetchShowEpisode(id).then((res) => res.data)
     );
-    const fetchedEsp = yield all(espisodes);
+    const fetchedEsp = yield all(episodes);
     const finalizedData = data.map((show: any, index: number) => ({
       ...show,
-      espisodes: fetchedEsp[index],
+      episodes: fetchedEsp[index],
     }));
     yield put(putShows(finalizedData));
   } catch (e) {

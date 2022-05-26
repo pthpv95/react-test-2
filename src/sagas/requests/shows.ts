@@ -6,7 +6,7 @@ export const fetchShows = () => {
   );
 };
 
-export const fetchShowEspisode = (showId: number) => {
+export const fetchShowEpisode = (showId: number) => {
   return Promise.resolve(
     instance.get(`https://api.tvmaze.com/shows/${showId}/episodes`)
   );
