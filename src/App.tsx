@@ -10,10 +10,10 @@ const App: React.FC = () => {
     <Suspense fallback={<div>Loading....</div>}>
       <Routes>
         <Route path="*" element={<div>NOT FOUND</div>} />
-        <Route path="/shows" element={<MainLayout />}>
+        <Route path="/" element={<MainLayout />}>
           <Route index element={<ShowsPage />} />
+          <Route path="/episodes/:id" element={<ShowDetailPage />} />
         </Route>
-        <Route path="/episodes/:id" element={<ShowDetailPage />} />
       </Routes>
     </Suspense>
   );
